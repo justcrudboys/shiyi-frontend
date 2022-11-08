@@ -42,7 +42,30 @@ export const constantRoutes = [
     component: () => import('@/views/404'),
     hidden: true
   },
-
+  {
+    path: '/profile',
+    component: Layout,
+    redirect: '/profile/index',
+    hidden: true,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/Profile/index'),
+        name: 'Profile',
+        meta: { title: 'Profile', icon: 'user', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/ChannelDetail',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: '',
+      name: 'channel',
+      component: () => import('@/views/ChannelDetail/index')
+    }]
+  },
   {
     path: '/',
     component: Layout,

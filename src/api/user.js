@@ -22,3 +22,21 @@ export function logout() {
     method: 'post'
   })
 }
+
+export function getUserDetail() {
+  return request({
+    url: '/api/user/info/detail',
+    method: 'get'
+  })
+}
+
+export function changeSignature(signature) {
+  return request({
+    url: '/api/user/info/signature',
+    method: 'put',
+    data: signature,
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8'
+    }
+  })
+}

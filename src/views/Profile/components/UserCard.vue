@@ -8,43 +8,28 @@
       <div class="box-center">
         <pan-thumb :image="user.avatar" :height="'100px'" :width="'100px'" :hoverable="false">
           <div>Hello</div>
-          {{ user.role }}
         </pan-thumb>
       </div>
       <div class="box-center">
         <div class="user-name text-center">{{ user.name }}</div>
-        <div class="user-role text-center text-muted">{{ user.role | uppercaseFirst }}</div>
       </div>
     </div>
 
     <div class="user-bio">
       <div class="user-education user-bio-section">
-        <div class="user-bio-section-header"><svg-icon icon-class="education" /><span>Education</span></div>
+        <div class="user-bio-section-header"><span>个性签名</span></div>
         <div class="user-bio-section-body">
           <div class="text-muted">
-            JS in Computer Science from the University of Technology
+            <el-input v-model="user.signature" @blur="updateSignature"   type="textarea" autosize></el-input>
           </div>
         </div>
       </div>
 
       <div class="user-skills user-bio-section">
-        <div class="user-bio-section-header"><svg-icon icon-class="skill" /><span>Skills</span></div>
+        <div class="user-bio-section-header"><span>绑定手机号</span></div>
         <div class="user-bio-section-body">
           <div class="progress-item">
-            <span>Vue</span>
-            <el-progress :percentage="70" />
-          </div>
-          <div class="progress-item">
-            <span>JavaScript</span>
-            <el-progress :percentage="18" />
-          </div>
-          <div class="progress-item">
-            <span>Css</span>
-            <el-progress :percentage="12" />
-          </div>
-          <div class="progress-item">
-            <span>ESLint</span>
-            <el-progress :percentage="100" status="success" />
+            <span>{{ user.phone }}</span>
           </div>
         </div>
       </div>
@@ -54,19 +39,33 @@
 
 <script>
 import PanThumb from '@/components/PanThumb'
+import { changeSignature, getUserDetail } from '@/api/user'
 
 export default {
   components: { PanThumb },
-  props: {
-    user: {
-      type: Object,
-      default: () => {
-        return {
-          name: '',
-          email: '',
-          avatar: '',
-          role: ''
+  data() {
+    return {
+      user: {}
+    }
+  },
+  created() {
+    this.getUser()
+  },
+  methods: {
+    getUser() {
+      getUserDetail().then(res => {
+        const detail = res.data
+        this.user = {
+          name: detail.username,
+          avatar: detail.avatar,
+          signature: detail.signature,
+          phone: detail.phone
         }
+      })
+    },
+    updateSignature() {
+      if (!(this.user.signature == null || this.user.signature === '')) { // 判断字符串是否为空
+        changeSignature(this.user.signature)
       }
     }
   }

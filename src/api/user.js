@@ -40,3 +40,25 @@ export function changeSignature(signature) {
     }
   })
 }
+
+export function uploadAvatar(data) {
+  return request({
+    url: '/api/user/info/avatar',
+    method: 'post',
+    headers: {
+      'Content-Type': 'multipart/form-data;'
+    },
+    data
+  })
+}
+
+export function changeAvatar(avatar) {
+  return request({
+    url: '/api/user/info/avatar',
+    method: 'put',
+    data: avatar,
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8'
+    }
+  })
+}

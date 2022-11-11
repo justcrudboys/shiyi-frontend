@@ -3,11 +3,18 @@
     <div slot="header" class="clearfix">
       <span>About me</span>
     </div>
+    <div>
+      <el-dialog title="上传头像" :visible.sync="dialogAvatarVisible" center>
+        <AvatarUploader class="avatar-uploader"></AvatarUploader>
+      </el-dialog>
+    </div>
 
     <div class="user-profile">
-      <div class="box-center">
-        <pan-thumb :image="user.avatar" :height="'100px'" :width="'100px'" :hoverable="false">
-          <div>Hello</div>
+      <div class="box-center" >
+        <pan-thumb :image="user.avatar" :height="'100px'" :width="'100px'" :hoverable="false" >
+          <div class="avatar-upload-button" @click="handleAvatarUpload">
+            <el-avatar :size="60" >上传头像</el-avatar>
+          </div>
         </pan-thumb>
       </div>
       <div class="box-center">
@@ -40,12 +47,14 @@
 <script>
 import PanThumb from '@/components/PanThumb'
 import { changeSignature, getUserDetail } from '@/api/user'
+import AvatarUploader from '@/views/Profile/components/AvatarUploader'
 
 export default {
-  components: { PanThumb },
+  components: { AvatarUploader, PanThumb },
   data() {
     return {
-      user: {}
+      user: {},
+      dialogAvatarVisible: false
     }
   },
   created() {
@@ -67,12 +76,23 @@ export default {
       if (!(this.user.signature == null || this.user.signature === '')) { // 判断字符串是否为空
         changeSignature(this.user.signature)
       }
+    },
+    handleAvatarUpload() {
+      this.dialogAvatarVisible = true
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.avatar-uploader {
+  margin: auto;
+}
+.avatar-upload-button {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
 .box-center {
   margin: 0 auto;
   display: table;

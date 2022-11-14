@@ -38,10 +38,9 @@ export default {
   },
   methods: {
     update() {
-      
+      let that = this
       createChannel(this.form.name,this.form.introduction,this.form.img,this.form.creator_id)
-      this.$message('submit!')
-      this.$router.go(-1)
+      .then(function(){that.$router.go(-1)})
     },
     upload(data) {
       const formdata = new FormData()		// 新建一个FormData()对象

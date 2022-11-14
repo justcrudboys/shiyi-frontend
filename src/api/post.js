@@ -11,14 +11,3 @@ export function createPost(channelId, content, datetime) {
       }
     }) 
 }
-
-export function uploadFile(data) {
-  return request({
-    url: '/api/post/uploadFile',
-    method: 'post',
-    headers: {
-      'Content-Type': 'multipart/form-data;'
-    },
-    data
-  })
-}

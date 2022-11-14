@@ -9,10 +9,11 @@
       >
     </aside>
     <div>
-      <tinymce v-model="content" :height="300" />
+      <tinymce v-model="content" :height="450" />
     </div>
-    <el-button type="primary" round @click="createPost">发布动态</el-button>
-    <div v-html="content"></div>
+    <el-row type="flex" justify="center" style="margin-top: 14px">
+      <el-button type="primary" round @click="createPost">发布动态</el-button>
+    </el-row>
   </div>
 </template>
 
@@ -24,9 +25,10 @@ export default {
   components: { Tinymce },
   data() {
     return {
-      content: `<h1 style="text-align: center;">在这里新建动态!</h1><p style="text-align: center; font-size: 15px;"><ul>
-        <li>Our <a href="//www.tinymce.com/docs/">documentation</a> is a great resource for learning how to configure TinyMCE.</li>
-      </ul>`,
+      // content: `<h1 style="text-align: center;">在这里新建动态!</h1><p style="text-align: center; font-size: 15px;"><ul>
+      //   <li>Our <a href="//www.tinymce.com/docs/">documentation</a> is a great resource for learning how to configure TinyMCE.</li>
+      // </ul>`,
+      content: ''
     };
   },
 

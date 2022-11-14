@@ -56,6 +56,18 @@ export const constantRoutes = [
       }
     ]
   },
+
+  {
+    path: '/createPost',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: '',
+      name: 'channel',
+      component: () => import('@/views/post/createPost')
+    }]
+  },
+
   {
     path: '/ChannelDetail',
     component: Layout,

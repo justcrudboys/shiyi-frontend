@@ -1,55 +1,66 @@
 <template>
   <div class="navbar">
-    <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
-
-    <breadcrumb class="breadcrumb-container" />
-
-    <div class="right-menu">
-      <el-dropdown class="avatar-container" trigger="click">
-        <div class="avatar-wrapper">
-          <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
-          <i class="el-icon-caret-bottom" />
-        </div>
-        <el-dropdown-menu slot="dropdown" class="user-dropdown">
-          <router-link to="/profile">
-            <el-dropdown-item>
-              Profile
+    <a-layout-header :style="{ position: 'fixed', zIndex: 1, width: '100%'}">
+      <div class="logo" >
+        <img :src="logoImg" style="width:100%;height:80%;">
+      </div>
+      <div class="nav-menu">
+        <a-menu
+          mode="horizontal"
+          theme="dark"
+          :style="{ lineHeight: '64px' }">
+          <a-menu-item key="homepage" @click="toHomePage"> <a-icon type="bank" />首页 </a-menu-item>
+          <a-menu-item key="dicovery" @click="toDiscoveryPage"> <a-icon type="appstore" />发现 </a-menu-item>
+          <a-menu-item key="mychannel"> <a-icon type="appstore" />我的频道 </a-menu-item>
+        </a-menu>
+      </div>
+      <div class="right-menu">
+        <el-dropdown class="avatar-container" trigger="click">
+          <div class="avatar-wrapper">
+            <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
+            <i class="el-icon-caret-bottom" />
+          </div>
+          <el-dropdown-menu slot="dropdown" class="user-dropdown">
+            <router-link to="/profile">
+              <el-dropdown-item>
+                Profile
+              </el-dropdown-item>
+            </router-link>
+            <a target="_blank" href="https://github.com/PanJiaChen/vue-admin-template/">
+              <el-dropdown-item>Github</el-dropdown-item>
+            </a>
+            <el-dropdown-item divided @click.native="logout">
+              <span style="display:block;">Log Out</span>
             </el-dropdown-item>
-          </router-link>
-          <a target="_blank" href="https://github.com/PanJiaChen/vue-admin-template/">
-            <el-dropdown-item>Github</el-dropdown-item>
-          </a>
-          <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/#/">
-            <el-dropdown-item>Docs</el-dropdown-item>
-          </a>
-          <el-dropdown-item divided @click.native="logout">
-            <span style="display:block;">Log Out</span>
-          </el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
-    </div>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </div>
+    </a-layout-header>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import Breadcrumb from '@/components/Breadcrumb'
-import Hamburger from '@/components/Hamburger'
 
 export default {
+  data() {
+    return {
+      logoImg: require('../../assets/logo.png')
+    }
+  },
   components: {
-    Breadcrumb,
-    Hamburger
   },
   computed: {
     ...mapGetters([
-      'sidebar',
       'avatar'
     ])
   },
   methods: {
-    toggleSideBar() {
-      this.$store.dispatch('app/toggleSideBar')
+    toHomePage() {
+      this.$router.push('/ChannelDetail')
+    },
+    toDiscoveryPage() {
+      this.$router.push('/dashboard')
     },
     async logout() {
       await this.$store.dispatch('user/logout')
@@ -61,27 +72,14 @@ export default {
 
 <style lang="scss" scoped>
 .navbar {
-  height: 50px;
+  height: 64px;
   overflow: hidden;
   position: relative;
   background: #fff;
   box-shadow: 0 1px 4px rgba(0,21,41,.08);
-
-  .hamburger-container {
-    line-height: 46px;
+  .nav-menu {
+    float: left;
     height: 100%;
-    float: left;
-    cursor: pointer;
-    transition: background .3s;
-    -webkit-tap-highlight-color:transparent;
-
-    &:hover {
-      background: rgba(0, 0, 0, .025)
-    }
-  }
-
-  .breadcrumb-container {
-    float: left;
   }
 
   .right-menu {
@@ -135,5 +133,10 @@ export default {
       }
     }
   }
+}
+.logo {
+  width: 120px;
+  height: 100%;
+  float: left;
 }
 </style>

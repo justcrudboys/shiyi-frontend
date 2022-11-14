@@ -1,6 +1,7 @@
 <template>
   <div style="padding: 10px 200px">
     <el-card >
+      <NavMenu></NavMenu>
       channelId:{{channelId}}
       <el-button @click="goback">返回</el-button>
       <el-card style="margin-bottom:20px;">

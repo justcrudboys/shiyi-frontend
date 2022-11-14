@@ -3,6 +3,9 @@
     <div class="dashboard-text">name: {{ name }}</div>
     <el-input v-model="channelId"> </el-input>
     <el-button @click="onSubmit">aa</el-button>
+    <div>
+      <a-switch default-checked @change="onChange" />
+    </div>
   </div>
 </template>
 

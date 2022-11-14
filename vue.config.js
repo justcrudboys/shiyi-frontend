@@ -24,6 +24,21 @@ module.exports = {
    * In most cases please use '/' !!!
    * Detail: https://cli.vuejs.org/config/#publicpath
    */
+  css: {
+    loaderOptions: {
+      less: {
+        lessOptions: {
+          // If you are using less-loader@5 please spread the lessOptions to options directly
+          modifyVars: {
+            'primary-color': '#ea1173',
+            'link-color': '#5b0101',
+            'border-radius-base': '2px'
+          },
+          javascriptEnabled: true
+        }
+      }
+    }
+  },
   publicPath: '/',
   outputDir: 'dist',
   assetsDir: 'static',

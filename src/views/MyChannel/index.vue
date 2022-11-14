@@ -6,27 +6,26 @@
       </div>
       <div v-else>
         <div class="notice" v-html="'您已经有' + channelList.length + '个频道了'" />
-        <span v-for="(channel,index) in channelList" :key="index">
-          <el-card class="small-card" shadow="hover" @click.native="getChannelId(index)">
-            <el-row :gutter="20">
-              <el-col :span="4">
-                <pan-thumb :image="channel['img']" :height="'100px'" :width="'100px'" :hoverable="false" />
-              </el-col>
-              <el-col :span="8">
-                <div>
-                  <div class="text">频道名称：</div>
-                  <div class="small-text" v-html="channel['name']" />
-                </div>
-              </el-col>
-              <el-col :span="12">
-                <div>
-                  <div class="text">频道简介：</div>
-                  <div class="small-text" v-html="channel['introduction']" />
-                </div>
-              </el-col>
-            </el-row>
-          </el-card>
-        </span>
+        <el-row :gutter="20" class="row-box">
+          <el-col v-for="(channel,index) in channelList" :key="index" :span="12">
+            <el-card class="small-card" shadow="hover" @click.native="getChannelId(index)">
+              <div slot="header" class="clearfix">
+                <div class="text" v-html="channel['name']" />
+              </div>
+              <el-row :gutter="20">
+                <el-col :span="8">
+                  <el-image :src="channel['img']" />
+                </el-col>
+                <el-col :span="16">
+                  <div>
+                    <div class="text">频道简介：</div>
+                    <div class="small-text" v-html="channel['introduction']" />
+                  </div>
+                </el-col>
+              </el-row>
+            </el-card>
+          </el-col>
+        </el-row>
       </div>
       <div class="button">
         <el-button round type="primary" @click="createChannel">新建频道</el-button>
@@ -42,13 +41,12 @@
 </template>
 
 <script>
-import PanThumb from '@/components/PanThumb'
+// import PanThumb from '@/components/PanThumb'
 import { getPesonalCreatorInfo, isCreator } from '@/api/creator'
 import { getCreatorChannel } from '@/api/channel'
 import { mapGetters } from 'vuex'
 export default {
   name: 'MyChannel',
-  components: { PanThumb },
   data() {
     return {
       creator: null,
@@ -102,13 +100,13 @@ export default {
   margin-bottom: 15px;
 }
 .text {
-  text-align: center;
+  text-align: left;
   font-size: large;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 .small-text {
-  text-align: center;
+  text-align: left;
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -118,11 +116,22 @@ export default {
   margin-top: 20px;
   margin-left: 50px;
   margin-right: 50px;
+  margin-bottom: 20px;
   transition: all .5s;
   text-align: left;
   overflow-y: auto;
+  border-radius: 5%;
 }
 .small-card {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.row-box {
+  display: flex;
+  flex-flow: wrap;
+}
+.row-box .small-card {
+  min-width: 100%;
   margin-top: 20px;
   margin-bottom: 20px;
 }

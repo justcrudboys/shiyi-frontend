@@ -5,15 +5,15 @@
     </div>
     <div>
       <el-dialog title="上传头像" :visible.sync="dialogAvatarVisible" center>
-        <AvatarUploader class="avatar-uploader"></AvatarUploader>
+        <AvatarUploader class="avatar-uploader" />
       </el-dialog>
     </div>
 
     <div class="user-profile">
-      <div class="box-center" >
-        <pan-thumb :image="user.avatar" :height="'100px'" :width="'100px'" :hoverable="false" >
+      <div class="box-center">
+        <pan-thumb :image="user.avatar" :height="'100px'" :width="'100px'" :hoverable="false">
           <div class="avatar-upload-button" @click="handleAvatarUpload">
-            <el-avatar :size="60" >上传头像</el-avatar>
+            <el-avatar :size="60">上传头像</el-avatar>
           </div>
         </pan-thumb>
       </div>
@@ -27,7 +27,7 @@
         <div class="user-bio-section-header"><span>个性签名</span></div>
         <div class="user-bio-section-body">
           <div class="text-muted">
-            <el-input v-model="user.signature" @blur="updateSignature"   type="textarea" autosize></el-input>
+            <el-input v-model="user.signature" type="textarea" autosize @blur="updateSignature" />
           </div>
         </div>
       </div>

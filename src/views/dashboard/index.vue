@@ -1,11 +1,9 @@
 <template>
   <div class="dashboard-container">
     <div class="dashboard-text">name: {{ name }}</div>
-    <el-input v-model="channelId"> </el-input>
+    <el-input v-model="channelId" />
     <el-button @click="onSubmit">aa</el-button>
-    <div>
-      <a-switch default-checked @change="onChange" />
-    </div>
+    <el-button @click="createPost">createPost</el-button>
   </div>
 </template>
 
@@ -26,6 +24,10 @@ export default {
   methods: {
     onSubmit() {
       this.$router.push({ path: 'ChannelDetail', query: { channelId: this.channelId }})
+    },
+
+    createPost() {
+      this.$router.push({ path: 'createPost' })
     }
   }
 }

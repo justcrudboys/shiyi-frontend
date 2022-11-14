@@ -67,6 +67,36 @@ export const constantRoutes = [
     }]
   },
   {
+    path: '/MyChannel',
+    component: Layout,
+    children: [{
+      path: '',
+      name: 'mychannel',
+      component: () => import('@/views/MyChannel/index'),
+      meta: { title: '我的作品频道', icon: 'dashboard' }
+    }]
+  },
+  {
+    path: '/ChannelCreation',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: '',
+      name: 'channelcreation',
+      component: () => import('@/views/ChannelCreation/index')
+    }]
+  },
+  {
+    path: '/ChannelManagement',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: '',
+      name: 'channelmanagement',
+      component: () => import('@/views/ChannelManagement/index')
+    }]
+  },
+  {
     path: '/',
     component: Layout,
     redirect: '/dashboard',
@@ -106,8 +136,8 @@ export const constantRoutes = [
     children: [
       {
         path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
+        name: 'Mychannel',
+        component: () => import('@/views/MyChannel/index'),
         meta: { title: 'Form', icon: 'form' }
       }
     ]

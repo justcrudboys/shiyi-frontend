@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard-container">
     <div class="dashboard-text">name: {{ name }}</div>
-    <el-input v-model="channelId"> </el-input>
+    <el-input v-model="channelId" />
     <el-button @click="onSubmit">aa</el-button>
   </div>
 </template>

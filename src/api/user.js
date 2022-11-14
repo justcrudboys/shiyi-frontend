@@ -7,7 +7,13 @@ export function login(data) {
     data
   })
 }
-
+export function register(data) {
+  return request({
+    url: '/api/user/registry/doRegistry',
+    method: 'post',
+    data
+  })
+}
 export function getInfo(token) {
   return request({
     url: '/api/user/info/brief',

@@ -1,68 +1,149 @@
 <template>
   <div class="login-container">
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
+    <a-tabs default-active-key="1" class="tab-pages" size="large">
+      <a-tab-pane key="1" >
+      <span slot="tab" >
+        <div style="width: 170px">
+          <a-icon type="login" />
+        登录
+        </div>
 
-      <div class="title-container">
-        <h3 class="title">Login Form</h3>
-      </div>
+      </span>
+        <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
-      <el-form-item prop="username">
+          <div class="title-container">
+            <h3 class="title">登录</h3>
+          </div>
+
+          <el-form-item prop="username">
         <span class="svg-container">
           <svg-icon icon-class="user" />
         </span>
-        <el-input
-          ref="username"
-          v-model="loginForm.username"
-          placeholder="Username"
-          name="username"
-          type="text"
-          tabindex="1"
-          auto-complete="on"
-        />
-      </el-form-item>
+            <el-input
+              ref="username"
+              v-model="loginForm.username"
+              placeholder="Username"
+              name="username"
+              type="text"
+              tabindex="1"
+              auto-complete="on"
+            />
+          </el-form-item>
 
-      <el-form-item prop="password">
+          <el-form-item prop="password">
         <span class="svg-container">
           <svg-icon icon-class="password" />
         </span>
-        <el-input
-          :key="passwordType"
-          ref="password"
-          v-model="loginForm.password"
-          :type="passwordType"
-          placeholder="Password"
-          name="password"
-          tabindex="2"
-          auto-complete="on"
-          @keyup.enter.native="handleLogin"
-        />
-        <span class="show-pwd" @click="showPwd">
+            <el-input
+              :key="passwordType"
+              ref="password"
+              v-model="loginForm.password"
+              :type="passwordType"
+              placeholder="Password"
+              name="password"
+              tabindex="2"
+              auto-complete="on"
+              @keyup.enter.native="handleLogin"
+            />
+            <span class="show-pwd" @click="showPwd">
           <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
         </span>
-      </el-form-item>
+          </el-form-item>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
+          <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
 
-    </el-form>
+        </el-form>
+      </a-tab-pane>
+      <a-tab-pane key="2">
+      <span slot="tab">
+        <div style="width: 170px">
+          <a-icon type="up-square" />
+        注册
+        </div>
+      </span>
+        <el-form ref="registerForm" :model="registerForm" :rules="registerRules" class="register-form" auto-complete="on" label-position="left">
+
+          <div class="title-container">
+            <h3 class="title">注册</h3>
+          </div>
+
+          <el-form-item prop="username">
+        <span class="svg-container">
+          <svg-icon icon-class="user" />
+        </span>
+            <el-input
+              ref="username"
+              v-model="registerForm.username"
+              placeholder="Username"
+              name="username"
+              type="text"
+              tabindex="1"
+              auto-complete="on"
+            />
+          </el-form-item>
+
+          <el-form-item prop="password">
+        <span class="svg-container">
+          <svg-icon icon-class="password" />
+        </span>
+            <el-input
+              ref="password"
+              v-model="registerForm.password"
+              type="text"
+              placeholder="Password"
+              name="password"
+              tabindex="2"
+              auto-complete="on"
+            />
+          </el-form-item>
+
+          <el-form-item prop="phone">
+        <span class="svg-container">
+          <svg-icon icon-class="dashboard" />
+        </span>
+            <el-input
+              ref="phone"
+              v-model="registerForm.phone"
+              type="text"
+              placeholder="Phone"
+              name="phone"
+              tabindex="3"
+              auto-complete="on"
+            />
+          </el-form-item>
+          <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleRegistry">注册</el-button>
+
+        </el-form>
+      </a-tab-pane>
+    </a-tabs>
+
   </div>
 </template>
 
 <script>
-import { validUsername } from '@/utils/validate'
+
+import { register } from '@/api/user'
 
 export default {
   name: 'Login',
   data() {
     const validateUsername = (rule, value, callback) => {
-      if (!validUsername(value)) {
-        callback(new Error('Please enter the correct user name'))
+      if (value.length < 1) {
+        callback(new Error('用户名不能为空'))
       } else {
         callback()
       }
     }
     const validatePassword = (rule, value, callback) => {
       if (value.length < 6) {
-        callback(new Error('The password can not be less than 6 digits'))
+        callback(new Error('密码不能少于6个数字'))
+      } else {
+        callback()
+      }
+    }
+    const validatePhone = (rule, value, callback) => {
+      if (value.length !== 11) {
+        callback(new Error('手机号格式不正确'))
       } else {
         callback()
       }
@@ -75,6 +156,16 @@ export default {
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
         password: [{ required: true, trigger: 'blur', validator: validatePassword }]
+      },
+      registerRules: {
+        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
+        password: [{ required: true, trigger: 'blur', validator: validatePassword }],
+        phone: [{ required: true, trigger: 'blur', validator: validatePhone }]
+      },
+      registerForm: {
+        username: '',
+        phone: '',
+        password: ''
       },
       loading: false,
       passwordType: 'password',
@@ -108,6 +199,21 @@ export default {
             this.loading = false
           }).catch(() => {
             this.loading = false
+          })
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
+    },
+    handleRegistry() {
+      this.$refs.registerForm.validate(valid => {
+        if (valid) {
+          register(this.registerForm).then(res => {
+            this.$message.success('注册成功')
+            this.registerForm.password = ''
+            this.registerForm.phone = ''
+            this.registerForm.username = ''
           })
         } else {
           console.log('error submit!!')
@@ -176,16 +282,30 @@ $light_gray:#eee;
   width: 100%;
   background-color: $bg;
   overflow: hidden;
-
+  .tab-pages {
+    position: relative;
+    width: 520px;
+    max-width: 100%;
+    padding: 40px 35px 0;
+    margin: 0 auto;
+    overflow: hidden;
+  }
   .login-form {
     position: relative;
     width: 520px;
     max-width: 100%;
-    padding: 160px 35px 0;
+    padding: 40px 35px 0;
     margin: 0 auto;
     overflow: hidden;
   }
-
+  .register-form {
+    position: relative;
+    width: 520px;
+    max-width: 100%;
+    padding: 40px 35px 0;
+    margin: 0 auto;
+    overflow: hidden;
+  }
   .tips {
     font-size: 14px;
     color: #fff;

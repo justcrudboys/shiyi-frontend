@@ -13,3 +13,25 @@ export function createPost(channelId, content, datetime, nameList, urlList) {
       }
     }) 
 }
+
+export function uploadFile(data) {
+  return request({
+    url: '/api/post/uploadFile',
+    method: 'post',
+    headers: {
+      'Content-Type': 'multipart/form-data;'
+    },
+    data
+  })
+}
+
+export function getPost(param) {
+  console.log(param)
+  return request({
+    url: '/api/post/getPost',
+    method: 'get',
+    params: {
+      'channel_id': param
+    }
+  })
+}

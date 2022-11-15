@@ -114,4 +114,3 @@ export default {
   font-size: 18px;
 }
 </style>
-//style="float: right; padding: 10px;width:100px"

@@ -11,7 +11,7 @@
           :style="{ lineHeight: '64px' }">
           <a-menu-item key="homepage" @click="toHomePage"> <a-icon type="bank" />首页 </a-menu-item>
           <a-menu-item key="dicovery" @click="toDiscoveryPage"> <a-icon type="appstore" />发现 </a-menu-item>
-          <a-menu-item key="mychannel"> <a-icon type="appstore" />我的频道 </a-menu-item>
+          <a-menu-item key="mychannel" @click="toMyChannel"> <a-icon type="appstore" />我的频道 </a-menu-item>
         </a-menu>
       </div>
       <div class="right-menu">
@@ -61,6 +61,9 @@ export default {
     },
     toDiscoveryPage() {
       this.$router.push('/dashboard')
+    },
+    toMyChannel(){
+      this.$router.push('/MyChannel')
     },
     async logout() {
       await this.$store.dispatch('user/logout')

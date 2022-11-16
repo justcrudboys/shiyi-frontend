@@ -1,7 +1,7 @@
 <template>
   <el-card class="box-card" style="margin-top:15px">
     <div slot="header" class="clearfix">
-      <span class="title">{{item.channelName}}</span>
+      <span class="title">{{channelName}}</span>
       <el-button type="primary" size="medium" round style="float: right;width:90px;padding: 8px 0" @click="createPost()">新建动态</el-button>
     </div>
 <!--    <div slot="header" class="clearfix">-->
@@ -43,6 +43,7 @@ export default {
         for (var i in data) {
           var tmp = {}
           tmp['name'] = data[i].postName
+          console.log(tmp['name'])
           tmp['content'] = data[i].content
           tmp['postTime'] = data[i].postTime
           this.tableData.push(tmp)
@@ -63,8 +64,7 @@ export default {
       tableData: []
     }
   },
-
-  async created() {
+  created() {
     this.channelId = this.$route.query.channelId
     this.channelName = this.$route.query.channelName
     this.init()
@@ -73,7 +73,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 .text {
   font-size: 14px;
 }
@@ -114,4 +114,3 @@ export default {
   font-size: 18px;
 }
 </style>
-//style="float: right; padding: 10px;width:100px"

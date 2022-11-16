@@ -17,6 +17,7 @@
           class="upload-demo"
           action="#"
           :http-request="upload"
+          :on-remove="handleRemove"
         >
           <el-button size="small" type="primary">附件上传</el-button>
           <div slot="tip" class="el-upload__tip">
@@ -32,7 +33,8 @@
 <script>
 import Tinymce from "@/components/Tinymce";
 import { createPost } from "@/api/post";
-import { uploadAvatar } from '@/api/user'
+import { uploadFile } from '@/api/post'
+import { Message } from 'element-ui';
 export default {
   name: "TinymceDemo",
   components: { Tinymce },
@@ -45,11 +47,12 @@ export default {
       url: '',
       urlList: new Array(),
       nameList: new Array(),
+      idList: new Array(),
     };
   },
   computed: {
     actionUrl() {
-      return process.env.VUE_APP_BASE_API + '/api/user/info/avatar'
+      return process.env.VUE_APP_BASE_API + '/api/post/file'
     }
   },
   methods: {
@@ -74,11 +77,8 @@ export default {
 
     createPost() {
       var date = this.timestampToTime(new Date().getTime());
-      console.log(this.content)
-      console.log(this.nameList)
-      console.log(this.urlList)
       createPost(1, this.content, date, this.nameList, this.urlList);
-      this.$message({
+      Message({
         message: "动态已发布",
         type: "success",
       });
@@ -87,11 +87,23 @@ export default {
       const that = this
       const formdata = new FormData()		// 新建一个FormData()对象
       formdata.append('file', data.file)
-      uploadAvatar(formdata).then(res => {
+      uploadFile(formdata).then(res => {
         that.url = res.data
+        that.idList.push(data.file.uid)
         that.nameList.push(data.file.name)
         that.urlList.push(that.url)
       })
+    },
+    handleRemove(file, fileList) {
+      console.log(file, fileList)
+      for (let i = 0, len = this.nameList.length; i < len; i++) {
+        if (this.idList[i] === file.uid) {
+          this.idList.splice(i,1)
+          this.nameList.splice(i,1)
+          this.urlList.splice(i,1)
+        }
+      }
+      console.log(this.nameList)
     },
   },
 };

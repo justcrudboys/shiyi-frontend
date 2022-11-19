@@ -11,7 +11,7 @@ export function uploadFile(data) {
     data
   })
 }
-export function createPost(channelId, content, datetime, nameList, urlList) {
+export function createPost(channelId, content, datetime, nameList, urlList, title, planId) {
     return request({
       url: '/api/post/createPost',
       method: 'post',
@@ -20,7 +20,9 @@ export function createPost(channelId, content, datetime, nameList, urlList) {
         content: content,
         datetime: datetime,
         nameList: nameList,
-        urlList: urlList
+        urlList: urlList,
+        title: title,
+        planId: planId
       }
     }) 
 }

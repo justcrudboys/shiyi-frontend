@@ -27,7 +27,7 @@ export default {
     },
 
     createPost() {
-      this.$router.push({ path: 'createPost' })
+      this.$router.push({ path: 'PostCreation', query: { channelId: 17 }})
     }
   }
 }

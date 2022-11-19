@@ -10,6 +10,16 @@ export function getCreatorChannel(creator_id) {
   })
 }
 
+export function getChannelPlan(channel_id) {
+  return request({
+    url: 'api/channel/channelPlan',
+    method: 'get',
+    params: {
+      'channel_id': channel_id
+    }
+  })
+}
+
 export function uploadImg(data) {
   return request({
     url: '/api/channel/uploadImg',

@@ -243,6 +243,16 @@ export const constantRoutes = [
       component: () => import('@/views/PostCreation/index')
     }]
   },
+  {
+    path: '/PostDetail',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: '',
+      name: 'postDetail',
+      component: () => import('@/views/PostDetail/index')
+    }]
+  },
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }

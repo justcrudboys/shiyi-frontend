@@ -37,3 +37,43 @@ export function getPost(param) {
     }
   })
 }
+
+export function getPostById(param) {
+  return request({
+    url: '/api/post/getPostById',
+    method: 'get',
+    params: {
+      'post_id': param
+    }
+  })
+}
+export function getAttachment(param) {
+  return request({
+    url: '/api/post/getAttachment',
+    method: 'get',
+    params: {
+      'post_id': param
+    }
+  })
+}
+
+export function createReply(data) {
+  return request({
+    url: '/api/post/reply/createReply',
+    method: 'post',
+    data: {
+      content: data.content,
+      postId: data.postId,
+      replyTime: data.replyTime
+    }
+  }) 
+}
+export function getReply(param) {
+  return request({
+    url: '/api/post/reply/getReply',
+    method: 'get',
+    params: {
+      'post_id': param
+    }
+  })
+}

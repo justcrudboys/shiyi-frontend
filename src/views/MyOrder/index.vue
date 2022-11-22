@@ -2,8 +2,22 @@
   <div style="padding: 10px 200px">
     <div class="myorder">
       <a-card>
+        <p style="font-size: xx-large">我的订单</p>
+        <div class="order-selector">
+          <a-radio-group default-value="0" button-style="solid" v-model="statusOption">
+            <a-radio-button value="0">
+              待支付订单
+            </a-radio-button>
+            <a-radio-button value="1">
+              已完成订单
+            </a-radio-button>
+            <a-radio-button value="2">
+              已取消订单
+            </a-radio-button>
+          </a-radio-group>
+        </div>
         <div class="order-info" v-for="order in orderList">
-          <a-card class="order-card" hoverable>
+          <a-card class="order-card" hoverable v-if="order.status==statusOption">
             <p style="font-size: x-large">{{order.channelName}}</p>
             <div class="plan-name">
               <a-tag color="cyan">
@@ -11,7 +25,7 @@
               </a-tag>
               ￥ {{order.planAmount}} / 月
             </div>
-            <p style="font-size: medium;margin: 10px">期限: {{order.subscribeMonth}}</p>
+            <p style="font-size: medium;margin: 10px">期限: {{order.subscribeMonth}} 月</p>
             <p style="font-size: medium;margin: 10px">金额: {{order.orderAmount}}</p>
             <a-divider></a-divider>
             <a-row>
@@ -21,8 +35,8 @@
               </a-col>
               <a-col span="4">
                 <div v-if="order.status===0">
-                  <a-button type="primary" class="order-button">支付</a-button>
-                  <a-button type="danger" class="order-button">取消</a-button>
+                  <a-button type="primary" class="order-button" @click="pay(order.orderId)">支付</a-button>
+                  <a-button type="danger" class="order-button" @click="cancel(order.orderId)">取消</a-button>
                 </div>
               </a-col>
             </a-row>
@@ -35,6 +49,8 @@
 </template>
 
 <script>
+import { Alipay, cancelOrder, getOrderList } from '@/api/order'
+
 const list = [
   {
     orderId: '1',
@@ -71,12 +87,37 @@ export default {
   name: 'MyOrder',
   data() {
     return {
-      orderList: list
+      orderList: list,
+      statusOption: 0
     }
+  },
+  mounted() {
+    getOrderList().then(res => {
+      this.orderList = res.data
+    })
   },
   computed: {
   },
   methods: {
+    cancel(orderId) {
+      cancelOrder(orderId).then(res => {
+        this.$router.go(0)
+      })
+    },
+    pay(orderId) {
+      Alipay(orderId).then(res => {
+        console.log(res)
+        const divForm = document.getElementsByTagName('div')
+        if (divForm.length) {
+          document.body.removeChild(divForm[0])
+        }
+        const div = document.createElement('div')
+        div.innerHTML = res.data // data就是接口返回的form 表单字符串
+        document.body.appendChild(div)
+        document.forms[0].setAttribute('target', '_blank')// 新开窗口跳转
+        document.forms[0].submit()
+      })
+    }
   }
 }
 </script>

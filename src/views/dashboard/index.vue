@@ -4,7 +4,11 @@
     <el-input v-model="channelId" />
     <el-button @click="onSubmit">aa</el-button>
     <el-button @click="createPost">createPost</el-button>
+
+    <el-button @click="createOrder">createOrder</el-button>
+
     <el-button @click="createPostDetail">PostDetail</el-button>
+
   </div>
 </template>
 
@@ -31,8 +35,13 @@ export default {
       this.$router.push({ path: 'PostCreation', query: { channelId: 17 }})
     },
 
+    createOrder() {
+      this.$router.push({ path: 'OrderCreation', query: { planId: 17 }})
+
+
     createPostDetail() {
       this.$router.push({ path: 'PostDetail', query: {  }})
+
     }
   }
 }

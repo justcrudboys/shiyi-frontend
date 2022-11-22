@@ -98,6 +98,26 @@ export const constantRoutes = [
     }]
   },
   {
+    path: '/OrderCreation',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: '',
+      name: 'ordercreation',
+      component: () => import('@/views/OrderCreation/index')
+    }]
+  },
+  {
+    path: '/MyOrder',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: '',
+      name: 'myorder',
+      component: () => import('@/views/MyOrder/index')
+    }]
+  },
+  {
     path: '/',
     component: Layout,
     redirect: '/dashboard',

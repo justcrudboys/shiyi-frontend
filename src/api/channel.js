@@ -36,3 +36,33 @@ export function createChannel(name, introduction, img, creator_id) {
     }
   })
 }
+
+export function getChannelInfo(param) {
+  return request({
+    url: '/api/channel/getChannelInfo',
+    method: 'get',
+    params: {
+      'channel_id': param
+    }
+  })
+}
+
+export function getChannelPlan(param) {
+  return request({
+    url: '/api/channel/channelPlan',
+    method: 'get',
+    params: {
+      'channel_id': param
+    }
+  })
+}
+
+export function getChannelTag(param) {
+  return request({
+    url: '/api/channel/getChannelTag',
+    method: 'get',
+    params: {
+      'channel_id': param
+    }
+  })
+}

@@ -1,6 +1,6 @@
 <template>
   <div id="article-detail" style="padding: 100px">
-    <div v-if="finish">
+    <div v-if="isPostValid">
       <div class="article-title">
         <h1>{{ postName }}</h1>
       </div>
@@ -36,18 +36,23 @@
       <br/>
       <PostComment :postId="postId" style="background: #fff"/>
     </div>
+    <div v-else>
+      <div class="article-title">
+        <h1>您没有访问该动态的权限</h1>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { getPostById, getAttachment } from "@/api/post"
+import { getPostById, getAttachment, isPostValid } from "@/api/post"
 import PostComment from "@/views/PostDetail/PostComment"
 
 export default {
   components: { PostComment },
   data() {
     return {
-      finish: true,
+      isPostValid: false,
       authorName: '',
       authorAvatar: '',
       content: '',
@@ -79,8 +84,11 @@ export default {
     },
   },
 
-  beforeMount() {
+  async beforeMount() {
     //this.postId = this.$route.query.postId;
+    await isPostValid(this.postId).then((res) => {
+        this.isPostValid = res.data 
+    })
   },
 
   mounted() {

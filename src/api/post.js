@@ -77,3 +77,12 @@ export function getReply(param) {
     }
   })
 }
+export function isPostValid(param) {
+  return request({
+    url: '/api/subscription/post',
+    method: 'get',
+    params: {
+      'postId': param
+    }
+  })
+}

@@ -1,92 +1,98 @@
 <template>
-  <div class="myorder">
-    <a-table :columns="columns" :data-source="data">
-      <a slot="name" slot-scope="text">{{ text }}</a>
-      <span slot="customTitle"><a-icon type="smile-o" /> Name</span>
-      <span slot="tags" slot-scope="tags">
-      <a-tag
-        v-for="tag in tags"
-        :key="tag"
-        :color="tag === 'loser' ? 'volcano' : tag.length > 5 ? 'geekblue' : 'green'"
-      >
-        {{ tag.toUpperCase() }}
-      </a-tag>
-    </span>
-      <span slot="action" slot-scope="text, record">
-      <a>Invite 一 {{ record.name }}</a>
-      <a-divider type="vertical" />
-      <a>Delete</a>
-      <a-divider type="vertical" />
-      <a class="ant-dropdown-link"> More actions <a-icon type="down" /> </a>
-    </span>
-    </a-table>
+  <div style="padding: 10px 200px">
+    <div class="myorder">
+      <a-card>
+        <div class="order-info" v-for="order in orderList">
+          <a-card class="order-card" hoverable>
+            <p style="font-size: x-large">{{order.channelName}}</p>
+            <div class="plan-name">
+              <a-tag color="cyan">
+                <p class="plan-name"> {{order.planName}}</p>
+              </a-tag>
+              ￥ {{order.planAmount}} / 月
+            </div>
+            <p style="font-size: medium;margin: 10px">期限: {{order.subscribeMonth}}</p>
+            <p style="font-size: medium;margin: 10px">金额: {{order.orderAmount}}</p>
+            <a-divider></a-divider>
+            <a-row>
+              <a-col span="20">
+                <p style="font-size: small;">状态: {{order.status===0?'未支付':order.status===1?'已支付':'已取消'}}</p>
+                <p style="font-size: small;">订单号: {{order.orderId}}</p>
+              </a-col>
+              <a-col span="4">
+                <div v-if="order.status===0">
+                  <a-button type="primary" class="order-button">支付</a-button>
+                  <a-button type="danger" class="order-button">取消</a-button>
+                </div>
+              </a-col>
+            </a-row>
+
+          </a-card>
+        </div>
+      </a-card>
+    </div>
   </div>
 </template>
 
 <script>
-const columns = [
+const list = [
   {
-    dataIndex: 'name',
-    key: 'name',
-    slots: { title: 'customTitle' },
-    scopedSlots: { customRender: 'name' },
+    orderId: '1',
+    planId: '2',
+    planName: '超级测试用',
+    channelName: '测试用频道罢了',
+    subscribeMonth: 3,
+    orderAmount: 20.37,
+    planAmount: 10.11,
+    status: 0,
   },
   {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
+    orderId: '2',
+    planId: '2',
+    planName: '超级测试用',
+    channelName: '测试用频道罢了',
+    subscribeMonth: 3,
+    orderAmount: 20.37,
+    planAmount: 10.11,
+    status: 1,
   },
   {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
-  },
-  {
-    title: 'Tags',
-    key: 'tags',
-    dataIndex: 'tags',
-    scopedSlots: { customRender: 'tags' },
-  },
-  {
-    title: 'Action',
-    key: 'action',
-    scopedSlots: { customRender: 'action' },
-  },
-];
-
-const data = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-];
-
+    orderId: '3',
+    planId: '2',
+    planName: '超级测试用',
+    channelName: '测试用频道罢了',
+    subscribeMonth: 3,
+    orderAmount: 20.37,
+    planAmount: 10.11,
+    status: 2,
+  }
+]
 export default {
+  name: 'MyOrder',
   data() {
     return {
-      data,
-      columns,
-    };
+      orderList: list
+    }
   },
-};
+  computed: {
+  },
+  methods: {
+  }
+}
 </script>
 
 <style lang="scss" scoped>
+.myorder{
+  .order-card{
+    border-radius: 10px;
+    margin: 10px;
+    .plan-name{
+      font-size: x-large;
+      margin: 10px;
+    }
+    .order-button{
+      margin: 5px;
+    }
+  }
+}
 </style>

@@ -1,6 +1,5 @@
 import request from '@/utils/request'
 
-
 export function uploadFile(data) {
   return request({
     url: '/api/post/file',
@@ -11,6 +10,7 @@ export function uploadFile(data) {
     data
   })
 }
+
 export function createPost(channelId, content, datetime, nameList, urlList, title, planId) {
     return request({
       url: '/api/post/createPost',
@@ -28,7 +28,6 @@ export function createPost(channelId, content, datetime, nameList, urlList, titl
 }
 
 export function getPost(param) {
-  console.log(param)
   return request({
     url: '/api/post/getPost',
     method: 'get',

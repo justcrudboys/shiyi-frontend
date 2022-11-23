@@ -36,6 +36,16 @@ export function getUserDetail() {
   })
 }
 
+export function searchUserInfo(user_id) {
+  return request({
+    url: '/api/user/info/search',
+    method: 'get',
+    params: {
+      'user_id': user_id
+    }
+  })
+}
+
 export function changeSignature(signature) {
   return request({
     url: '/api/user/info/signature',

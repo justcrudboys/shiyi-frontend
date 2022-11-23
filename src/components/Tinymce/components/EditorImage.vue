@@ -50,7 +50,7 @@ export default {
   },
   computed: {
     actionUrl() {
-      return process.env.VUE_APP_BASE_API + '/api/user/info/avatar'
+      return process.env.VUE_APP_BASE_API + '/api/post/file'
     }
   },
   methods: {

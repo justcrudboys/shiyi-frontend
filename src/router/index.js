@@ -58,17 +58,6 @@ export const constantRoutes = [
   },
 
   {
-    path: '/createPost',
-    component: Layout,
-    hidden: true,
-    children: [{
-      path: '',
-      name: 'channel',
-      component: () => import('@/views/post/createPost')
-    }]
-  },
-
-  {
     path: '/ChannelDetail',
     component: Layout,
     hidden: true,
@@ -106,6 +95,26 @@ export const constantRoutes = [
       path: '',
       name: 'channelmanagement',
       component: () => import('@/views/ChannelManagement/index')
+    }]
+  },
+  {
+    path: '/OrderCreation',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: '',
+      name: 'ordercreation',
+      component: () => import('@/views/OrderCreation/index')
+    }]
+  },
+  {
+    path: '/MyOrder',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: '',
+      name: 'myorder',
+      component: () => import('@/views/MyOrder/index')
     }]
   },
   {
@@ -223,6 +232,26 @@ export const constantRoutes = [
         meta: { title: 'External Link', icon: 'link' }
       }
     ]
+  },
+  {
+    path: '/PostCreation',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: '',
+      name: 'postCreation',
+      component: () => import('@/views/PostCreation/index')
+    }]
+  },
+  {
+    path: '/PostDetail',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: '',
+      name: 'postDetail',
+      component: () => import('@/views/PostDetail/index')
+    }]
   },
 
   // 404 page must be placed at the end !!!

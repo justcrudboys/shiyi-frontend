@@ -12,19 +12,19 @@ export function uploadFile(data) {
 }
 
 export function createPost(channelId, content, datetime, nameList, urlList, title, planId) {
-    return request({
-      url: '/api/post/createPost',
-      method: 'post',
-      data: {
-        channelId: channelId,
-        content: content,
-        datetime: datetime,
-        nameList: nameList,
-        urlList: urlList,
-        title: title,
-        planId: planId
-      }
-    }) 
+  return request({
+    url: '/api/post/createPost',
+    method: 'post',
+    data: {
+      channelId: channelId,
+      content: content,
+      datetime: datetime,
+      nameList: nameList,
+      urlList: urlList,
+      title: title,
+      planId: planId
+    }
+  })
 }
 
 export function getPost(param) {
@@ -65,7 +65,7 @@ export function createReply(data) {
       postId: data.postId,
       replyTime: data.replyTime
     }
-  }) 
+  })
 }
 export function getReply(param) {
   return request({

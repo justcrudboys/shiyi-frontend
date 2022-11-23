@@ -57,16 +57,6 @@ export function getChannelInfo(param) {
   })
 }
 
-export function getChannelPlan(param) {
-  return request({
-    url: '/api/channel/channelPlan',
-    method: 'get',
-    params: {
-      'channel_id': param
-    }
-  })
-}
-
 export function getChannelTag(param) {
   return request({
     url: '/api/channel/getChannelTag',

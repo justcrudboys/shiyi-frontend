@@ -24,6 +24,17 @@ export function changeIntroduction(introduction) {
   })
 }
 
+export function changeAccount(account) {
+  return request({
+    url: '/api/creator/account',
+    method: 'put',
+    data: account,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+}
+
 export function becomeCreator() {
   return request({
     url: '/api/creator/becomecreator',

@@ -12,6 +12,20 @@
         placeholder="请输入创作者简介"
         type="textarea">
       </el-input>
+      <div class="user-bio-section-header"><span>绑定支付宝账户</span></div>
+      <el-input
+        v-model="creator.account"
+        :rows="1"
+        @blur="updateAccount"
+        placeholder="请绑定支付宝账户"
+        type="textarea">
+      </el-input>
+      <div class="user-bio-section-header"><span>余额</span></div>
+        <div class="user-bio-section-body">
+          <div class="progress-item">
+            <span>{{ creator.balance }}</span>
+          </div>
+        </div>
     </div>
     <div v-else>
       <p style="text-align: center;font-size: xx-large">您还不是创作者哦</p>
@@ -21,7 +35,7 @@
 </template>
 
 <script>
-import { becomeCreator, changeIntroduction, getPesonalCreatorInfo, isCreator } from '@/api/creator'
+import { becomeCreator, changeIntroduction, getPesonalCreatorInfo, isCreator, changeAccount } from '@/api/creator'
 
 export default {
   name: 'CreatorCard',
@@ -35,6 +49,9 @@ export default {
       if (!(this.creator.introduction == null || this.creator.introduction === '')) { // 判断字符串是否为空
         changeIntroduction(this.creator.introduction)
       }
+    },
+    updateAccount() {
+      changeAccount(this.creator.account)
     },
     beCreator() {
       becomeCreator()

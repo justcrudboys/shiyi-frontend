@@ -18,6 +18,18 @@
                 </el-col>
                 <el-col :span="16">
                   <div>
+                    <div v-if="channel['tagName'].length==0">
+                      <el-row :gutter="5">
+                        <a-tag color="blue">暂无标签</a-tag>
+                      </el-row>
+                    </div>
+                    <div v-else>
+                      <el-row :gutter="5">
+                        <el-col v-for="(tag,tagIndex) in channel['tagName']" :key="tagIndex" :span="4">
+                          <a-tag color="blue" v-html="tag" />
+                        </el-col>
+                      </el-row>
+                    </div>
                     <div class="text">频道简介：</div>
                     <div class="small-text" v-html="channel['introduction']" />
                   </div>
@@ -68,7 +80,7 @@ export default {
           getCreatorChannel(this.creator['id']).then(response1 => {
             // console.log(response1)
             this.channelList = response1.data
-            console.log(this.channelList)
+            // console.log(this.channelList)
           })
         })
       }

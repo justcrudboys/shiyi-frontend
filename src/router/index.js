@@ -58,6 +58,25 @@ export const constantRoutes = [
   },
 
   {
+    path: '/MySubscription',
+    component: Layout,
+    children: [{
+      path: '',
+      name: 'mysubscription',
+      component: () => import('@/views/MySubscription/index')
+    }]
+  },
+  {
+    path: '/CreatorInfo',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: '',
+      name: 'creatorinfo',
+      component: () => import('@/views/CreatorInfo/index')
+    }]
+  },
+  {
     path: '/ChannelDetail',
     component: Layout,
     hidden: true,

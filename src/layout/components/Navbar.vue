@@ -12,6 +12,8 @@
           <a-menu-item key="homepage" @click="toHomePage"> <a-icon type="bank" />首页 </a-menu-item>
           <a-menu-item key="dicovery" @click="toDiscoveryPage"> <a-icon type="appstore" />发现 </a-menu-item>
           <a-menu-item key="mychannel" @click="toMyChannel"> <a-icon type="appstore" />我的频道 </a-menu-item>
+          <a-menu-item key="creatorinfo" @click="toCreatorInfo"> <a-icon type="appstore" />创作者详情 </a-menu-item>
+          <a-menu-item key="mysubscription" @click="toMySubscription"> <a-icon type="appstore" />我的订阅 </a-menu-item>
         </a-menu>
       </div>
       <div class="right-menu">
@@ -62,8 +64,14 @@ export default {
     toDiscoveryPage() {
       this.$router.push('/dashboard')
     },
-    toMyChannel(){
+    toMyChannel() {
       this.$router.push('/MyChannel')
+    },
+    toCreatorInfo() {
+      this.$router.push('/CreatorInfo')
+    },
+    toMySubscription() {
+      this.$router.push('/MySubscription')
     },
     async logout() {
       await this.$store.dispatch('user/logout')

@@ -21,7 +21,7 @@ export function uploadImg(data) {
   })
 }
 
-export function createChannel(name, introduction, img, creator_id) {
+export function createChannel(name, introduction, img, creator_id,tags) {
   return request({
     url: '/api/channel/createChannel',
     method: 'post',
@@ -29,7 +29,8 @@ export function createChannel(name, introduction, img, creator_id) {
       name: name,
       introduction: introduction,
       img: img,
-      creator_id: creator_id
+      creator_id: creator_id,
+      tags: tags
     },
     headers: {
       'Content-Type': 'application/json; charset=utf-8'

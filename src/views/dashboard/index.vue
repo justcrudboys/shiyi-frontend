@@ -36,7 +36,7 @@ export default {
     },
 
     createOrder() {
-      this.$router.push({ path: 'OrderCreation', query: { planId: 17 } })
+      this.$router.push({ path: 'OrderCreation', query: { planId: 1 } })
     },
     createPostDetail() {
       this.$router.push({ path: 'PostDetail', query: { postId: 17 }})

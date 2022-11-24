@@ -7,7 +7,7 @@
         <a-tag color="cyan">
           <p class="plan-name"> {{this.plan.name}}</p>
         </a-tag>
-        ￥ {{this.plan.amount}} / 月
+        ￥ {{this.plan.amount}} / 月      aaaaaaa{{this.order.planId}}
       </div>
       <p class="plan-introduction"> {{this.plan.introduction}}</p>
       <a-divider></a-divider>
@@ -42,15 +42,14 @@
 </template>
 
 <script>
-import { createOrder, getPlanDetail } from '@/api/order'
-
 export default {
   name: 'OrderCreation',
   data() {
     return {
       order: {
         planId: '',
-        subscribeMonth: 1
+        subscribeMonth: 1,
+        moneyAmount: ''
       },
       plan: {
         planId: '',
@@ -66,17 +65,13 @@ export default {
       return (this.plan.amount * this.order.subscribeMonth).toFixed(2)
     }
   },
-  mounted() {
+  created() {
     this.order.planId = this.$route.query.planId
-    getPlanDetail(this.$route.query.planId).then(res => {
-      this.plan = res.data
-    })
   },
   methods: {
     submitOrder() {
-      createOrder(this.plan.planId, this.order.subscribeMonth, this.orderAmount).then(res => {
-        this.$router.push('/MyOrder')
-      })
+      console.log('yes')
+      this.$router.push('/MyOrder')
     }
   }
 }

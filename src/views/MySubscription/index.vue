@@ -3,7 +3,9 @@
     <div v-if="planList.length==0">
       <div class="notice">您还没有订阅哦</div>
       <div class="button">
-        <el-button round type="primary" @click="toDiscoveryPage">前往发现页面</el-button>
+        <a-button type="primary" size="large" @click="toDiscoveryPage">
+          前往发现页面
+        </a-button>
       </div>
     </div>
     <div v-else>

@@ -68,7 +68,7 @@ export default {
       this.$router.push('/MyChannel')
     },
     toCreatorInfo() {
-      this.$router.push('/CreatorInfo')
+      this.$router.push('/SearchCreator')
     },
     toMySubscription() {
       this.$router.push('/MySubscription')

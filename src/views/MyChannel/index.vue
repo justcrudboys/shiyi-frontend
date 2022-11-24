@@ -74,13 +74,14 @@ export default {
     isCreator().then(res => {
       if (res.data === true) {
         getPesonalCreatorInfo().then(response => {
-          // console.log(response.data)
+           //console.log(response.data)
           this.creator = response.data
-          // console.log(this.creator['id'])
+           //console.log(this.creator['id'])
           getCreatorChannel(this.creator['id']).then(response1 => {
-            // console.log(response1)
+             //console.log(response1)
             this.channelList = response1.data
-            // console.log(this.channelList)
+             //console.log(this.channelList)
+             //console.log(this.channelList.length)
           })
         })
       }
@@ -95,7 +96,7 @@ export default {
     },
     getChannelId(index) {
       console.log(this.channelList[index]['id'])
-      this.$router.push({ path: '/ChannelManagement', query: { channelId: this.channelList[index]['id'], channelName: this.channelList[index]['name'] }})
+      this.$router.push({ path: '/ChannelInfo', query: { channelId: this.channelList[index]['id'], channelName: this.channelList[index]['name'] }})
     }
   }
 }

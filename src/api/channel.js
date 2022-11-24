@@ -67,3 +67,13 @@ export function getChannelTag(param) {
     }
   })
 }
+
+export function getUserInfoByChannel(channelId) {
+  return request({
+    url: '/api/channel/getUserInfoByChannel',
+    method: 'get',
+    params: {
+      'channelId': channelId
+    }
+  })
+}

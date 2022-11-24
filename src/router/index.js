@@ -147,6 +147,36 @@ export const constantRoutes = [
     }]
   },
   {
+    path: '/ChannelSearch',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: '',
+      name: 'channelsearch',
+      component: () => import('@/views/ChannelSearch/index')
+    }]
+  },
+  {
+    path: '/ChannelExploration',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: '',
+      name: 'channelexploration',
+      component: () => import('@/views/ChannelExploration/index')
+    }]
+  },
+  {
+    path: '/CreatorSearch',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: '',
+      name: 'creatorsearch',
+      component: () => import('@/views/CreatorSearch/index')
+    }]
+  },
+  {
     path: '/',
     component: Layout,
     redirect: '/dashboard',

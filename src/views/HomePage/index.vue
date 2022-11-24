@@ -1,16 +1,14 @@
 <template>
   <div class="homepage">
     <a-card>
-      <SearchBar></SearchBar>
-      <TagList></TagList>
+
       <Recommends></Recommends>
     </a-card>
   </div>
 </template>
 
 <script>
-import SearchBar from '@/views/HomePage/components/SearchBar'
-import TagList from '@/views/HomePage/components/TagList'
+
 import Recommends from '@/views/HomePage/components/Recommends'
 const tags = [
   { id: 3, name: '绘画' },

@@ -127,6 +127,16 @@ export const constantRoutes = [
     }]
   },
   {
+    path: '/HomePage',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: '',
+      name: 'homepage',
+      component: () => import('@/views/HomePage/index')
+    }]
+  },
+  {
     path: '/MyOrder',
     component: Layout,
     hidden: true,

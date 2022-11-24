@@ -66,6 +66,11 @@
         </a-col>
       </a-row>
     </div>
+    <div class="button">
+      <a-button type="primary" size="large" @click="backToList">
+        返回搜索结果列表
+      </a-button>
+    </div>
   </a-card>
 </template>
 
@@ -76,12 +81,14 @@ import { getCreatorChannel } from '@/api/channel'
 export default {
   data() {
     return {
-      searchid: 7,
+      searchid: 0,
       user: {},
       channelList: []
     }
   },
   created() {
+    this.searchid = this.$route.query.searchid
+    // console.log(this.searchid)
     searchUserInfo(this.searchid).then(response => {
       // console.log(response)
       this.user = response.data
@@ -96,8 +103,11 @@ export default {
   },
   methods: {
     getChannelId(index) {
-      console.log(this.channelList[index]['id'])
+      // console.log(this.channelList[index]['id'])
       this.$router.push({ path: '/ChannelManagement', query: { channelId: this.channelList[index]['id'], channelName: this.channelList[index]['name'] }})
+    },
+    backToList() {
+      this.$router.go(-1)
     }
   }
 }
@@ -142,9 +152,6 @@ export default {
   font-size: small;
   margin-top: 5px;
   margin-bottom: 5px;
-}
-.image {
-  height: 200px;
 }
 .row-box {
   display: flex;

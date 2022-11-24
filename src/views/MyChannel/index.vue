@@ -40,13 +40,17 @@
         </el-row>
       </div>
       <div class="button">
-        <el-button round type="primary" @click="createChannel">新建频道</el-button>
+        <a-button type="primary" size="large" @click="createChannel">
+          新建频道
+        </a-button>
       </div>
     </div>
     <div v-else>
       <div class="notice">您还不是创作者哦</div>
       <div class="button">
-        <el-button round type="primary" @click="beCreator">前往个人信息页面</el-button>
+        <a-button type="primary" size="large" @click="beCreator">
+          前往个人信息页面
+        </a-button>
       </div>
     </div>
   </el-card>
@@ -94,7 +98,7 @@ export default {
       this.$router.push({ path: '/ChannelCreation' })
     },
     getChannelId(index) {
-      console.log(this.channelList[index]['id'])
+      // console.log(this.channelList[index]['id'])
       this.$router.push({ path: '/ChannelManagement', query: { channelId: this.channelList[index]['id'], channelName: this.channelList[index]['name'] }})
     }
   }

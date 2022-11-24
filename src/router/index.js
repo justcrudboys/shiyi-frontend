@@ -67,6 +67,16 @@ export const constantRoutes = [
     }]
   },
   {
+    path: '/SearchCreator',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: '',
+      name: 'searchcreator',
+      component: () => import('@/views/CreatorSearch/index')
+    }]
+  },
+  {
     path: '/CreatorInfo',
     component: Layout,
     hidden: true,

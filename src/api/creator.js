@@ -41,3 +41,14 @@ export function becomeCreator() {
     method: 'post'
   })
 }
+
+
+export function getCreaterByName(name) {
+  return request({
+    url: '/api/creator/search',
+    method: 'get',
+    params: {
+      name
+    }
+  })
+}

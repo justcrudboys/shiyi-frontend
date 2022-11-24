@@ -26,3 +26,26 @@ export function Alipay(orderId) {
     }
   })
 }
+export function getPlanDetail(planId) {
+  return request({
+    url: '/api/channel/planDetail',
+    method: 'get',
+    params: {
+      planId: planId
+    }
+  })
+}
+export function createOrder(planId, subscribeMonth, moneyAmount) {
+  return request({
+    url: '/api/order',
+    method: 'post',
+    data: {
+      planId: planId,
+      subscribeMonth: subscribeMonth,
+      moneyAmount: moneyAmount
+    },
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8'
+    }
+  })
+}

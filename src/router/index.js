@@ -67,6 +67,16 @@ export const constantRoutes = [
     }]
   },
   {
+    path: '/SearchCreator',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: '',
+      name: 'searchcreator',
+      component: () => import('@/views/CreatorSearch/index')
+    }]
+  },
+  {
     path: '/CreatorInfo',
     component: Layout,
     hidden: true,
@@ -137,6 +147,16 @@ export const constantRoutes = [
     }]
   },
   {
+    path: '/HomePage',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: '',
+      name: 'homepage',
+      component: () => import('@/views/HomePage/index')
+    }]
+  },
+  {
     path: '/MyOrder',
     component: Layout,
     hidden: true,
@@ -144,6 +164,36 @@ export const constantRoutes = [
       path: '',
       name: 'myorder',
       component: () => import('@/views/MyOrder/index')
+    }]
+  },
+  {
+    path: '/ChannelSearch',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: '',
+      name: 'channelsearch',
+      component: () => import('@/views/ChannelSearch/index')
+    }]
+  },
+  {
+    path: '/ChannelExploration',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: '',
+      name: 'channelexploration',
+      component: () => import('@/views/ChannelExploration/index')
+    }]
+  },
+  {
+    path: '/CreatorSearch',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: '',
+      name: 'creatorsearch',
+      component: () => import('@/views/CreatorSearch/index')
     }]
   },
   {

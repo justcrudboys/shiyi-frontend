@@ -21,7 +21,7 @@ export default {
     },
     zIndex: {
       type: Number,
-      default: 1
+      default: 0.5
     },
     width: {
       type: String,

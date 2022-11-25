@@ -1,48 +1,59 @@
 <template>
-  <div class="navbar">
-    <a-layout-header :style="{ position: 'fixed', zIndex: 1, width: '100%'}">
-      <div class="logo" >
-        <img :src="logoImg" style="width:100%;height:80%;">
-      </div>
-      <div class="nav-menu">
-        <a-menu
-          mode="horizontal"
-          theme="dark"
-          :style="{ lineHeight: '64px' }">
-          <a-menu-item key="homepage" @click="toHomePage"> <a-icon type="bank" />首页 </a-menu-item>
-          <a-menu-item key="dicovery" @click="toDiscoveryPage"> <a-icon type="appstore" />发现 </a-menu-item>
-          <a-menu-item key="mychannel" @click="toMyChannel"> <a-icon type="appstore" />我的频道 </a-menu-item>
-          <a-menu-item key="creatorinfo" @click="toCreatorInfo"> <a-icon type="appstore" />创作者详情 </a-menu-item>
-          <a-menu-item key="mysubscription" @click="toMySubscription"> <a-icon type="appstore" />我的订阅 </a-menu-item>
-        </a-menu>
-      </div>
-      <div class="right-menu">
-        <el-dropdown class="avatar-container" trigger="click">
-          <div class="avatar-wrapper">
-            <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
-            <i class="el-icon-caret-bottom" />
-          </div>
-          <el-dropdown-menu slot="dropdown" class="user-dropdown">
-            <router-link to="/profile">
-              <el-dropdown-item>
-                Profile
-              </el-dropdown-item>
-            </router-link>
-            <a target="_blank" href="https://github.com/PanJiaChen/vue-admin-template/">
-              <el-dropdown-item>Github</el-dropdown-item>
-            </a>
-            <el-dropdown-item divided @click.native="logout">
-              <span style="display:block;">Log Out</span>
-            </el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-      </div>
-    </a-layout-header>
+  <div style="height: 90px">
+    <div class="navbar">
+      <a-layout-header   style="position : fixed; zIndex : 2; width : 100% ; background: #ffffff">
+        <div id="top">
+          <a-space>
+            <div class="logo" >
+              <img :src="logoImg" style="width:100%;height:80%;">
+            </div>
+            <div class="nav-menu">
+              <a-menu
+                mode="horizontal"
+                theme="light"
+                style="lineHeight: 62px;background: #ffffff">
+                <a-menu-item key="mychannel" @click="toMyChannel" class="nav-item"> <a-icon type="appstore" />我的频道</a-menu-item>
+                <a-menu-item key="mysubscription" @click="toMySubscription" class="nav-item"> <a-icon type="appstore" />我的订阅</a-menu-item>
+                <a-menu-item key="myorder" @click="toMyOrder" class="nav-item"> <a-icon type="appstore" />我的订单</a-menu-item>
+              </a-menu>
+            </div>
+            <div class="search-bar">
+              <SearchBar></SearchBar>
+            </div>
+            <div class="right-menu">
+              <el-dropdown class="avatar-container" trigger="click">
+                <div class="avatar-wrapper">
+                  <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
+                  <i class="el-icon-caret-bottom" />
+                </div>
+                <el-dropdown-menu slot="dropdown" class="user-dropdown">
+                  <router-link to="/profile">
+                    <el-dropdown-item>
+                      Profile
+                    </el-dropdown-item>
+                  </router-link>
+                  <a target="_blank" href="https://github.com/PanJiaChen/vue-admin-template/">
+                    <el-dropdown-item>Github</el-dropdown-item>
+                  </a>
+                  <el-dropdown-item divided @click.native="logout">
+                    <span style="display:block;">Log Out</span>
+                  </el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
+            </div>
+          </a-space>
+
+        </div>
+      </a-layout-header>
+    </div>
+    <TagList style="height: 26px; border-radius: 15px;position : fixed; zIndex : 2; width : 100% ;"></TagList>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import SearchBar from '@/layout/components/SearchBar'
+import TagList from '@/layout/components/TagList'
 
 export default {
   data() {
@@ -51,6 +62,8 @@ export default {
     }
   },
   components: {
+    TagList,
+    SearchBar
   },
   computed: {
     ...mapGetters([
@@ -73,6 +86,9 @@ export default {
     toMySubscription() {
       this.$router.push('/MySubscription')
     },
+    toMyOrder() {
+      this.$router.push('/MyOrder')
+    },
     async logout() {
       await this.$store.dispatch('user/logout')
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
@@ -87,14 +103,19 @@ export default {
   overflow: hidden;
   position: relative;
   background: #fff;
-  box-shadow: 0 1px 4px rgba(0,21,41,.08);
+  box-shadow: #fff;
   .nav-menu {
-    float: left;
     height: 100%;
+    width: 100% ;
+    .nav-item{
+      color: tomato;
+    }
   }
-
+  .search-bar{
+    width: 100%;
+  }
   .right-menu {
-    float: right;
+    margin-left: 20px;
     height: 100%;
     line-height: 50px;
 

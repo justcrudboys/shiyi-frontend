@@ -127,6 +127,16 @@ export const constantRoutes = [
     }]
   },
   {
+    path: '/ChannelInfo',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: '',
+      name: 'channelinfo',
+      component: () => import('@/views/ChannelInfo/index')
+    }]
+  },
+  {
     path: '/OrderCreation',
     component: Layout,
     hidden: true,

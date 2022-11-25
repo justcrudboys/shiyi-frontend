@@ -31,7 +31,7 @@ export function uploadImg(data) {
   })
 }
 
-export function createChannel(name, introduction, img, creator_id) {
+export function createChannel(name, introduction, img, creator_id,tags) {
   return request({
     url: '/api/channel/createChannel',
     method: 'post',
@@ -39,7 +39,8 @@ export function createChannel(name, introduction, img, creator_id) {
       name: name,
       introduction: introduction,
       img: img,
-      creator_id: creator_id
+      creator_id: creator_id,
+      tags: tags
     },
     headers: {
       'Content-Type': 'application/json; charset=utf-8'
@@ -63,6 +64,17 @@ export function getChannelTag(param) {
     method: 'get',
     params: {
       'channel_id': param
+    }
+  })
+}
+
+
+export function getUserInfoByChannel(channelId) {
+  return request({
+    url: '/api/channel/getUserInfoByChannel',
+    method: 'get',
+    params: {
+      'channelId': channelId
     }
   })
 }
@@ -100,3 +112,4 @@ export function updateTags(params) {
     data: params
   })
 }
+

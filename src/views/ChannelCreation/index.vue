@@ -1,20 +1,25 @@
 <template>
   <div class="app-container">
-    <el-form ref="form" :model="form" label-width="120px" style="margin-top:20px">
-      <el-form-item label="频道名称">
+    <el-form ref="form" :model="form" label-width="120px" style="margin-top:20px" :rules="rules">
+      <el-form-item label="频道名称" prop="name">
         <el-input v-model="form.name" />
       </el-form-item>
-      <el-form-item label="频道图片">
+      <el-form-item label="频道图片" prop="img">
         <el-upload class="avatar-uploader" action="#" :http-request="upload" :show-file-list="false"
           :before-upload="beforeAvatarUpload">
           <img v-if="form.img" :src="form.img" class="avatar">
           <i v-else class="el-icon-plus avatar-uploader-icon"></i>
         </el-upload>
       </el-form-item>
-      <el-form-item label="频道介绍">
+      <el-form-item style="margin-top:20px" label="标签选择" prop="tags">
+        <el-card>
+        <el-transfer v-model="form.tags" :data="tagList" :titles="['可选标签', '已选标签']" :button-texts="['撤回', '选择']"></el-transfer>
+        </el-card>
+      </el-form-item>
+       <el-form-item style="margin-top:20px" label="频道介绍" prop="introduction">
         <el-input v-model="form.introduction" type="textarea" :rows="6" />
       </el-form-item>
-      <el-form-item style="margin-top:20px">
+      <el-form-item style="margin-top:50px">
         <el-button type="primary" @click="update">创建</el-button>
       </el-form-item>
     </el-form>
@@ -32,14 +37,67 @@ export default {
         name: '',
         introduction: '',
         img: '',
-        creator_id:0
-      }
+        creator_id:0,
+        tags:[],
+      },
+      tagList: [{
+          key:3,
+          label:'游戏'
+        },{
+          key:4,
+          label:'绘画'
+        },{
+          key:5,
+          label:'音乐'
+        },{
+          key:6,
+          label:'视频'
+        },{
+          key:7,
+          label:'播客'
+        },{
+          key:8,
+          label:'技术'
+        },{
+          key:9,
+          label:'漫画'
+        },{
+          key:10,
+          label:'动画'
+        },{
+          key:11,
+          label:'美食'
+        },{
+          key:12,
+          label:'时尚'
+        },{
+          key:13,
+          label:'数码'
+        },{
+          key:14,
+          label:'科普'
+        }
+      ],
+      rules:{
+        name: [
+            { required: true, message: '请输入频道名称', trigger: 'blur' },
+          ],
+          img: [
+            { required: true, message: '请输入频道图片', trigger: 'change' },
+          ],  
+          tags: [
+            { required: true, message: '请加入频道标签', trigger: 'change' },
+          ],
+          introduction:[
+            { required: true, message: '请加入频道介绍', trigger: 'blur' }
+          ]
+        }
     }
   },
   methods: {
     update() {
       let that = this
-      createChannel(this.form.name,this.form.introduction,this.form.img,this.form.creator_id)
+      createChannel(this.form.name,this.form.introduction,this.form.img,this.form.creator_id,this.form.tags)
       .then(function(){that.$router.go(-1)})
     },
     upload(data) {

@@ -85,7 +85,7 @@ export default {
   },
 
   async beforeMount() {
-    //this.postId = this.$route.query.postId;
+    this.postId = this.$route.query.postId;
     await isPostValid(this.postId).then((res) => {
         this.isPostValid = res.data 
     })

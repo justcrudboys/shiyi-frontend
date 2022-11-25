@@ -42,6 +42,7 @@ export function becomeCreator() {
   })
 }
 
+
 export function getCreaterByName(name) {
   return request({
     url: '/api/creator/search',

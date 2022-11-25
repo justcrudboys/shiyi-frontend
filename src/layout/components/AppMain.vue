@@ -1,7 +1,10 @@
 <template>
   <section class="app-main">
     <transition name="fade-transform" mode="out-in">
-      <router-view :key="key" />
+      <a-layout-footer style="background: rgb(225,228,238)">
+        <router-view :key="key" />
+        <p style="text-align: center">Shiyi</p>
+      </a-layout-footer>
     </transition>
   </section>
 </template>
@@ -24,6 +27,7 @@ export default {
   width: 100%;
   position: relative;
   overflow: hidden;
+  background: rgb(18, 52, 105);
 }
 .fixed-header+.app-main {
   padding-top: 50px;

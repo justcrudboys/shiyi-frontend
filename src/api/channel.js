@@ -143,3 +143,9 @@ export function updateTags(params) {
   })
 }
 
+export function channelByRecommend() {
+  return request({
+    url: 'api/channel/recommend',
+    method: 'get'
+  })
+}

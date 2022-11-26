@@ -41,7 +41,7 @@ export default {
     }
   },
   created() {
-    // this.key = this.$route.query.key
+    this.key = this.$route.query.key
     getCreaterByName(this.key).then(response => {
       console.log(response)
       this.creatorList = response.data

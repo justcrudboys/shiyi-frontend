@@ -10,18 +10,11 @@
 <script>
 
 import Recommends from '@/views/HomePage/components/Recommends'
-const tags = [
-  { id: 3, name: '绘画' },
-  { id: 4, name: '游戏' },
-  { id: 5, name: '视频' },
-  { id: 6, name: '音乐' },
-]
 export default {
   name: 'HomePage',
-  components: { Recommends, TagList, SearchBar },
+  components: { Recommends },
   data() {
     return {
-      tagList: tags
     }
   },
 

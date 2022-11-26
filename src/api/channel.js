@@ -68,6 +68,7 @@ export function getChannelTag(param) {
   })
 }
 
+
 export function getUserInfoByChannel(channelId) {
   return request({
     url: '/api/channel/getUserInfoByChannel',
@@ -77,3 +78,38 @@ export function getUserInfoByChannel(channelId) {
     }
   })
 }
+
+export function putChannelInfo(params) {
+  return request({
+    url: '/api/channel/putChannelInfo',
+    method: 'put',
+    data: {
+      id: params.channelId,
+      img: params.img,
+      introduction: params.introduction,
+      name: params.name
+    }
+  })
+}
+
+export function postPlan(params) {
+  return request({
+    url: '/api/channel/createChannelPlan',
+    method: 'post',
+    data: {
+      amount: params.amount,
+      channelId: params.channelId,
+      introduction: params.introduction,
+      name: params.name
+    }
+  })
+}
+
+export function updateTags(params) {
+  return request({
+    url: '/api/channel/updateOneChannelTagRelation',
+    method: 'post',
+    data: params
+  })
+}
+

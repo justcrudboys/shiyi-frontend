@@ -85,3 +85,13 @@ export function isPostValid(param) {
     }
   })
 }
+
+export function getPostAndPlan(channelId){
+  return request({
+    url: '/api/post/getPostAndPlan',
+    method: 'get',
+    params: {
+      'channel_id': channelId
+    }
+  })
+}

@@ -58,7 +58,7 @@ export default {
       content: '',
       postName: '',
       postTime: '',
-      postId: "1591722181340090405",
+      postId: '',
       attachmentList: '',
     };
   },

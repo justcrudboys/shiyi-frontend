@@ -104,7 +104,7 @@ export default {
   methods: {
     getChannelId(index) {
       // console.log(this.channelList[index]['id'])
-      this.$router.push({ path: '/ChannelManagement', query: { channelId: this.channelList[index]['id'], channelName: this.channelList[index]['name'] }})
+      this.$router.push({ path: '/ChannelInfo', query: { channelId: this.channelList[index]['id'], channelName: this.channelList[index]['name'] }})
     },
     backToList() {
       this.$router.go(-1)

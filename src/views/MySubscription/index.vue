@@ -69,7 +69,7 @@ export default {
     },
     getChannelId(index) {
       // console.log(this.planList[index]['channelId'])
-      this.$router.push({ path: '/ChannelManagement', query: { channelId: this.planList[index]['channelId'], channelName: this.planList[index]['channelName'] }})
+      this.$router.push({ path: '/ChannelInfo', query: { channelId: this.planList[index]['channelId'], channelName: this.planList[index]['channelName'] }})
     }
   }
 }

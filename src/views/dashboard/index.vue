@@ -3,11 +3,11 @@
     <div class="dashboard-text">name: {{ name }}</div>
     <el-input v-model="channelId" />
     <el-button @click="onSubmit">aa</el-button>
-    <el-button @click="createPost">createPost</el-button>
+    <el-button @click="ChannelSearch">ChannelSearch</el-button>
 
     <el-button @click="createOrder">createOrder</el-button>
 
-    <el-button @click="createPostDetail">PostDetail</el-button>
+    <el-button @click="ChannelExploration">ChannelExploration</el-button>
 
   </div>
 </template>
@@ -31,15 +31,15 @@ export default {
       this.$router.push({ path: 'ChannelDetail', query: { channelId: this.channelId }})
     },
 
-    createPost() {
-      this.$router.push({ path: 'PostCreation', query: { channelId: 17 }})
+    ChannelSearch() {
+      this.$router.push({ path: 'ChannelSearch', query: { key: '频道' }})
     },
 
     createOrder() {
       this.$router.push({ path: 'OrderCreation', query: { planId: 1 } })
     },
-    createPostDetail() {
-      this.$router.push({ path: 'PostDetail', query: { postId: 17 }})
+    ChannelExploration() {
+      this.$router.push({ path: 'ChannelExploration', query: { tagId: 14 }})
     }
   }
 }

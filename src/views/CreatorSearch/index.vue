@@ -36,16 +36,15 @@ export default {
   name: 'CreatorSearch',
   data() {
     return {
-      key: 'y',
+      key: '',
       creatorList: []
     }
   },
+  watch: {
+    '$route': 'getCreatorList'
+  },
   created() {
-    // this.key = this.$route.query.key
-    getCreaterByName(this.key).then(response => {
-      console.log(response)
-      this.creatorList = response.data
-    })
+    this.getCreatorList()
   },
   methods: {
     toHomePage() {
@@ -53,6 +52,13 @@ export default {
     },
     getCreatorId(index) {
       this.$router.push({ path: '/CreatorInfo', query: { searchid: this.creatorList[index]['id'] }})
+    },
+    getCreatorList() {
+      this.key = this.$route.query.key
+      getCreaterByName(this.key).then(response => {
+        // console.log(response)
+        this.creatorList = response.data
+      })
     }
   }
 }

@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     getChannelId(index) {
-      this.$router.push({ path: '/ChannelManagement', query: { channelId: this.channelList[index]['id'], channelName: this.channelList[index]['name'] }})
+      this.$router.push({ path: '/ChannelInfo', query: { channelId: this.channelList[index]['id'], channelName: this.channelList[index]['name'] }})
     }
   },
   watch: {

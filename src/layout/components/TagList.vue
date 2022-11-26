@@ -4,7 +4,7 @@
       <button class="dataNavPrev" @click="navPrev"><</button>
       <ul class="dataNavList" ref="dataNavList">
         <li class="dataNavListItem" v-for="(item, index) in navList" :key="index" :style="{transform:'translateX(-'+move+'px)'}">
-          {{item}}
+          <div @click="searchTag(item.key)">{{item.label}}</div>
         </li>
       </ul>
       <button class="dataNavNext" @click="navNext">></button>
@@ -13,27 +13,43 @@
 </template>
 
 <script>
-const list = [
-  '游戏',
-  '音乐',
-  '视频',
-  '绘画',
-  '杂谈',
-  '杂谈',
-  '杂谈',
-  '杂谈',
-  '杂谈',
-  '杂谈',
-  '视频',
-  '游戏',
-  '音乐',
-  '视频',
-  '绘画',
-  '游戏',
-  '音乐',
-  '视频',
-  '绘画'
-]
+const list = [{
+  key: 3,
+  label: '游戏'
+}, {
+  key: 4,
+  label: '绘画'
+}, {
+  key: 5,
+  label: '音乐'
+}, {
+  key: 6,
+  label: '视频'
+}, {
+  key: 7,
+  label: '播客'
+}, {
+  key: 8,
+  label: '技术'
+}, {
+  key: 9,
+  label: '漫画'
+}, {
+  key: 10,
+  label: '动画'
+}, {
+  key: 11,
+  label: '美食'
+}, {
+  key: 12,
+  label: '时尚'
+}, {
+  key: 13,
+  label: '数码'
+}, {
+  key: 14,
+  label: '科普'
+}]
 export default {
   name: 'TagList',
   data() {
@@ -61,6 +77,9 @@ export default {
       })()}
   },
   methods: {
+    searchTag(key){
+      this.$router.push({path:'/ChannelExploration',query:{tagId:key}})
+    },
     // 当菜单项向右的可移动距离大于单个菜单项的宽度时，move减去一个菜单项的宽度（即右移移动一个菜单项的宽度），
     // 当菜单项向右的可移动距离小于单个菜单项的宽度时，move等于0（即回到最开始没有移动的状态）
     navPrev() {

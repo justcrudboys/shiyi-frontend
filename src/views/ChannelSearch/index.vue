@@ -54,6 +54,17 @@ export default {
 
     }
   },
+  watch: {
+    $route: {
+      async handler(newV,oldV){
+        this.key = newV.query.key
+        await channelSearch(this.key).then(res=> {
+          this.channelList = res.data
+        })
+      },
+      deep: true
+    }
+  },
   async created() {
     this.key = this.$route.query.key;
     await channelSearch(this.key).then(res=> {

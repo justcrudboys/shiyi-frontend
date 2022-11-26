@@ -54,6 +54,20 @@ export default {
       this.$router.push({ path: '/ChannelManagement', query: { channelId: this.channelList[index]['id'], channelName: this.channelList[index]['name'] }})
     }
   },
+  watch: {
+    $route: {
+      async handler(newV,oldV){
+        this.tagId = newV.query.tagId
+        await getTagName(this.tagId).then(res =>{
+          this.tagName = res.data.name
+        })
+        await channelByTagId(this.tagId).then(res=> {
+          this.channelList = res.data
+        })
+      },
+      deep: true
+    }
+  },
   async created() {
     this.tagId = this.$route.query.tagId
     await getTagName(this.tagId).then(res =>{

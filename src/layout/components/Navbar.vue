@@ -4,8 +4,8 @@
       <a-layout-header   style="position : fixed; zIndex : 2; width : 100% ; background: #ffffff">
         <div id="top">
           <a-space>
-            <div class="logo" >
-              <img :src="logoImg" style="width:100%;height:80%;">
+            <div class="logo" @click="toHomePage" >
+              <img :src="logoImg" style="width:100%;height:100%;">
             </div>
             <div class="nav-menu">
               <a-menu
@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     toHomePage() {
-      this.$router.push('/ChannelDetail')
+      this.$router.push('/HomePage')
     },
     toDiscoveryPage() {
       this.$router.push('/dashboard')

@@ -42,6 +42,6 @@ export default {
 
 <style scoped>
   .profile-container{
-    padding: 30px 300px;
+    padding: 30px 100px;
   }
 </style>

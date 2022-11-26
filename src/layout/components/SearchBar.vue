@@ -15,6 +15,7 @@
         style="width: 75%"
         size="default"
         @search="onSearch"
+        v-model="key"
       />
     </a-input-group>
   </div>
@@ -25,7 +26,17 @@ export default {
   name: 'SearchBar',
   data() {
     return {
-      searchOption: 'creator'
+      searchOption: 'creator',
+      key: ''
+    }
+  },
+  methods: {
+    onSearch() {
+      if (this.searchOption === 'creator') {
+        this.$router.push({ path: '/CreatorSearch', query: { key: this.key }})
+      } else {
+        this.$router.push({ path: '/ChannelSearch', query: { key: this.key }})
+      }
     }
   }
 }

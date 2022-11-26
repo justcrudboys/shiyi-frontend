@@ -1,5 +1,35 @@
 import request from '@/utils/request'
 
+export function getTagName(tagId) {
+  return request({
+    url: 'api/channel/getTagName',
+    method: 'get',
+    params: {
+      'tag_id': tagId
+    }
+  })
+}
+
+export function channelSearch(key) {
+  return request({
+    url: 'api/channel/channelSearch',
+    method: 'get',
+    params: {
+      'key': key
+    }
+  })
+}
+
+export function channelByTagId(tagId) {
+  return request({
+    url: 'api/channel/channelByTagId',
+    method: 'get',
+    params: {
+      'tag_id': tagId
+    }
+  })
+}
+
 export function getCreatorChannel(creator_id) {
   return request({
     url: 'api/channel/mychannel',

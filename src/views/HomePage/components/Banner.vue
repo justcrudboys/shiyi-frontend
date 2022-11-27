@@ -20,7 +20,6 @@ export default {
   name: 'Banner',
   data() {
     return {
-      bannerImg: require('../../../assets/banner.png')
     }
   },
   methods:{

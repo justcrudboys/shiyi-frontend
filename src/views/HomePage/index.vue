@@ -28,7 +28,6 @@ export default {
   components: { Banner, Recommends },
   data() {
     return {
-      bannerImg: require('../../assets/banner.png')
     }
   },
 

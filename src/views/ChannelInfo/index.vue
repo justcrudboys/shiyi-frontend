@@ -9,8 +9,7 @@
           </el-col>
         </el-row>
         <el-row :gutter="20" type="flex" justify="center">
-          <el-col :span="6" v-for="(item) in channelForm.tagNameData" :key="item.id"
-            style="text-align: center; margin-top:15px">
+          <el-col :span="6" v-for="(item) in channelForm.tagNameData" :key="item.id" style="text-align: center; margin-top:15px">
             <el-tag>{{ item.name }}</el-tag>
           </el-col>
         </el-row>
@@ -32,7 +31,7 @@
 
       <el-card style="margin-top:15px;margin-bottom: 20px;">
         <div slot="header" class="clearfix">
-          <span class="title">共有{{ channelForm.planData.length }}个赞助方案</span>
+          <span class="title">共有{{ channelForm.planData.length }}种赞助方案</span>
         </div>
         <el-row v-if="channelForm.planData !== undefined && channelForm.planData.length > 0">
           <el-col :span="22" v-for="(item) in channelForm.planData" :key="item.amount" :offset="1">
@@ -73,7 +72,6 @@
                   <span class="post_name"><strong>{{ item.name }}</strong></span>
                   <el-divider v-if="item.name !== null"></el-divider>
                   <div class="bottom clearfix">
-                    <div class="postContent" style="margin-bottom: 23px">{{ item.content }}</div>
                     <el-row>
                       <el-col :span="10">
                         <time class="time">{{ item.postTime }}</time>
@@ -95,7 +93,7 @@
     </el-col>
   </el-row>
 </template>
-  
+
 <script>
 import { getPostAndPlan } from '@/api/post'
 import { getChannelInfo, getChannelPlan, getChannelTag, getUserInfoByChannel } from '@/api/channel'
@@ -112,7 +110,7 @@ export default {
           tmp['name'] = data[i].postName
           tmp['postTime'] = data[i].postTime
           tmp['planName'] = data[i].planName
-          tmp['content'] = data[i].content          
+          tmp['content'] = data[i].content
           this.tableData.push(tmp)
         }
       })
@@ -190,7 +188,7 @@ export default {
 }
 
 </script>
-  
+
 <style scoped>
 .text {
   font-size: 14px;
@@ -245,4 +243,3 @@ export default {
   color: grey
 }
 </style>
-  

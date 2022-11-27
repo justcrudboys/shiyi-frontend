@@ -35,7 +35,7 @@
           </div>
           <el-row v-if="channelForm.planData!==undefined && channelForm.planData.length > 0">
             <el-col :span="22" v-for="(item) in channelForm.planData" :key="item.amount" :offset="1" >
-              <div style="margin-top:15px">
+              <div style="margin-top:15px"  @click="goToOrder(item.id)">
                 <el-card  class="in-card" :body-style="{ padding: '0px'}" shadow="hover">
                   <div slot="header">
                     <span class="post_name">
@@ -63,13 +63,20 @@
           </div>
           <el-row v-if="tableData!==undefined && tableData.length > 0">
             <el-col :span="22" v-for="(item) in tableData" :key="item.date" :offset="1" >
-              <div style="margin-top:15px">
+              <div style="margin-top:15px"  @click="goToPost(item.id)">
                 <el-card  class="in-card" :body-style="{ padding: '0px'}" shadow="hover">
                   <div slot="header">
                     <span class="post_name"><strong>{{item.name}}</strong></span>
                     <el-divider v-if="item.name!==null"></el-divider>
                     <div class="bottom clearfix">
-                      <time class="time">{{item.content}}</time>
+                      <el-row>
+                        <el-col :span="10">
+                          <time class="time">{{ item.postTime }}</time>
+                        </el-col>
+                        <el-col :span="13">
+                          <div class="time" style="text-align:right">{{ item.planName }}</div>
+                        </el-col>
+                      </el-row>
                     </div>
                   </div>
                 </el-card>
@@ -151,20 +158,22 @@
 </template>
 
 <script>
-import { getPost } from '@/api/post'
+import { getPostAndPlan} from '@/api/post'
 import { getChannelInfo, getChannelPlan, getChannelTag, putChannelInfo, postPlan, updateTags } from '@/api/channel'
 
 export default {
   name: 'ChannelManagement',
   methods: {
     init() {
-      getPost(this.channelForm.channelId).then((res) => {
+      getPostAndPlan(this.channelForm.channelId).then((res) => {
         var data = res.data
         for (var i in data) {
           var tmp = {}
+          tmp['id'] = data[i].id
           tmp['name'] = data[i].postName
-          tmp['content'] = data[i].content
           tmp['postTime'] = data[i].postTime
+          tmp['planName'] = data[i].planName
+          tmp['content'] = data[i].content
           this.tableData.push(tmp)
         }
       })
@@ -178,6 +187,7 @@ export default {
         var data = res.data
         for (var i in data) {
           var tmp = {}
+          tmp['id'] = data[i].id
           tmp['amount'] = data[i].amount
           tmp['name'] = data[i].name
           tmp['introduction'] = data[i].introduction
@@ -272,6 +282,12 @@ export default {
 
     createPost() {
       this.$router.push({ path: 'PostCreation', query: { channelId: this.channelForm.channelId }})
+    },
+    goToOrder(id) {
+      this.$router.push({ path: '/OrderCreation', query: { planId: id }})
+    },
+    goToPost(id) {
+      this.$router.push({ path: '/PostDetail', query: { postId: id }})
     },
     goback() {
       this.$router.go(-1)

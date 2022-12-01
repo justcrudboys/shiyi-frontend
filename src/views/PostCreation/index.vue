@@ -1,10 +1,11 @@
 <template>
+<div style="background-color: white">
   <div class="components-container">
     <el-row style="margin-bottom: 10px">
-      <el-col :span="15">
-        <el-input v-model="title" placeholder="请输入文章标题"></el-input>
+      <el-col :span="15" style="margin-top: 10px">
+        <el-input v-model="title" placeholder="请输入动态标题"></el-input>
       </el-col>
-      <el-col :span="7">
+      <el-col :span="7" style="margin-top: 10px">
         <el-select v-model="planid" placeholder="请选择赞助计划">
           <el-option
             v-for="item in options"
@@ -15,7 +16,7 @@
           </el-option>
         </el-select>
       </el-col>
-      <el-col :span="1"
+      <el-col :span="1" style="margin-top: 10px"
         ><el-button type="primary" round @click="createPost"
           >发布动态</el-button
         ></el-col
@@ -38,6 +39,7 @@
       </el-col>
     </el-row>
   </div>
+</div>
 </template>
 
 <script>
@@ -61,8 +63,8 @@ export default {
       idList: new Array(),
       channelId: null,
       planList: new Array(),
-      planid: "",
-      title: "",
+      planid: null,
+      title: '',
       planIdList: new Array(),
     };
   },
@@ -110,6 +112,21 @@ export default {
     },
 
     createPost() {
+      console.log(this.planid,this.title)
+      if(this.title === ''){
+        Message({
+          message: "请输入动态标题",
+          type: "warning",
+        });
+        return;
+      }
+      if(this.planid === null){
+        Message({
+          message: "请选择赞助计划",
+          type: "warning",
+        });
+        return;
+      }
       var date = this.timestampToTime(new Date().getTime());
       createPost(
         this.channelId,

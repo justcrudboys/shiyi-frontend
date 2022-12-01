@@ -1,4 +1,5 @@
 <template>
+<div style="background-color: white">
   <div id="article-detail" style="padding: 100px">
     <div v-if="isPostValid">
       <div class="article-title">
@@ -42,6 +43,7 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -163,4 +165,6 @@ export default {
   min-height: 0;
 }
 /* mavon-editor整体样式--end */
+
+
 </style>

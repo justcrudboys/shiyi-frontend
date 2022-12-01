@@ -147,11 +147,12 @@ export const constantRoutes = [
     }]
   },
   {
-    path: '/HomePage',
+    path: '/',
     component: Layout,
+    redirect: '/HomePage',
     hidden: true,
     children: [{
-      path: '',
+      path: '/HomePage',
       name: 'homepage',
       component: () => import('@/views/HomePage/index')
     }]
@@ -197,9 +198,8 @@ export const constantRoutes = [
     }]
   },
   {
-    path: '/',
+    path: '/dashboard',
     component: Layout,
-    redirect: '/dashboard',
     children: [{
       path: 'dashboard',
       name: 'Dashboard',

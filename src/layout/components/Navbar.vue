@@ -167,6 +167,7 @@ export default {
   }
 }
 .logo {
+  cursor: pointer;
   width: 120px;
   height: 100%;
   float: left;

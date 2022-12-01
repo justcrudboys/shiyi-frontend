@@ -48,7 +48,7 @@ export default {
   },
   methods: {
     toHomePage() {
-      this.$router.push('/dashboard')
+      this.$router.push('/HomePage')
     },
     getCreatorId(index) {
       this.$router.push({ path: '/CreatorInfo', query: { searchid: this.creatorList[index]['id'] }})

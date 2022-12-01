@@ -67,8 +67,8 @@
       </a-row>
     </div>
     <div class="button">
-      <a-button type="primary" size="large" @click="backToList">
-        返回搜索结果列表
+      <a-button type="primary" size="large" @click="backToPrevious">
+        返回
       </a-button>
     </div>
   </a-card>
@@ -106,7 +106,7 @@ export default {
       // console.log(this.channelList[index]['id'])
       this.$router.push({ path: '/ChannelInfo', query: { channelId: this.channelList[index]['id'], channelName: this.channelList[index]['name'] }})
     },
-    backToList() {
+    backToPrevious() {
       this.$router.go(-1)
     }
   }

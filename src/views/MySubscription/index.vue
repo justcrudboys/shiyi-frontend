@@ -4,7 +4,7 @@
       <div class="notice">您还没有订阅哦</div>
       <div class="button">
         <a-button type="primary" size="large" @click="toDiscoveryPage">
-          前往发现页面
+          前往主页
         </a-button>
       </div>
     </div>
@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     toDiscoveryPage() {
-      this.$router.push('/dashboard')
+      this.$router.push('/HomePage')
     },
     getChannelId(index) {
       // console.log(this.planList[index]['channelId'])

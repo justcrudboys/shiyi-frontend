@@ -1,5 +1,25 @@
 <template>
   <div class="login-container">
+    <vue-particles
+      class="login-bg"
+      style="position:absolute;width:100%;height: 100%"
+      自己设置css样式控制粒子显示的位置
+      color="#f4f4f4"
+      :particle-opacity="0.7"
+      :particles-number="100"
+      shape-type="circle"
+      :particle-size="4"
+      lines-color="#f4f4f4"
+      :lines-width="1"
+      :line-linked="true"
+      :line-opacity="0.4"
+      :lines-distance="150"
+      :move-speed="3"
+      :hover-effect="true"
+      hover-mode="grab"
+      :click-effect="true"
+      click-mode="push"
+    />
     <a-tabs default-active-key="1" class="tab-pages" size="large">
       <a-tab-pane key="1" >
       <span slot="tab" >
@@ -273,7 +293,8 @@ $cursor: #fff;
 </style>
 
 <style lang="scss" scoped>
-$bg:#2d3a4b;
+$bg: #2e1359;
+$tab: rgba(35, 13, 86, 0.7);
 $dark_gray:#889aa4;
 $light_gray:#eee;
 
@@ -287,8 +308,9 @@ $light_gray:#eee;
     width: 520px;
     max-width: 100%;
     padding: 40px 35px 0;
-    margin: 0 auto;
+    margin: 100px auto;
     overflow: hidden;
+    background-color: $tab;
   }
   .login-form {
     position: relative;

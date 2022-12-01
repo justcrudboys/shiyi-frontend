@@ -7,6 +7,7 @@ import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.less'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/en' // lang i18n
+import VueParticles from 'vue-particles'
 
 import '@/styles/index.scss' // global css
 
@@ -35,6 +36,7 @@ Vue.use(ElementUI, { locale })
 // 如果想要中文版 element-ui，按如下方式声明
 // Vue.use(ElementUI)
 Vue.use(Antd)
+Vue.use(VueParticles)
 Vue.config.productionTip = false
 
 new Vue({

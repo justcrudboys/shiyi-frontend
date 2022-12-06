@@ -116,9 +116,9 @@ export default {
       })
       getChannelInfo(this.channelForm.channelId).then((res) => {
         this.channelForm.introduction = res.data.introduction
-        this.channelForm.creator_id = res.data.creator_id
+        this.channelForm.creator_id = res.data.creatorId
         this.channelForm.img = res.data.img
-        this.creatorForm.id = res.data.creator_id
+        this.creatorForm.id = res.data.creatorId
       })
       getUserInfoByChannel(this.channelForm.channelId).then((res) => {
         this.creatorForm.name = res.data.username
